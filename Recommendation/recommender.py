@@ -1,10 +1,17 @@
 import pandas as pd
 import numpy as np
 import argparse
+import ast
 from numpy import dot
 from numpy.linalg import norm
 from Recommendation.data_preprocessing import load_data, convert_business_type, get_group, get_threshold
 
+
+def arg_as_list(s):
+    v = ast.literal_eval(s)
+    if type(v) is not list:
+        raise argparse.ArgumentTypeError("Argument \"%s\" is not a list" % (s))
+    return v
 
 def cos_sim(A, B):
   return dot(A, B)/(norm(A)*norm(B))
@@ -41,10 +48,12 @@ def recommender_sys(business_type, conditional_list, many_list):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--business_type', type=str, default='음식점', help='추천받고자 하는 업종')
-    parser.add_argument('--conditional_list', type=list, default=['유사업종수', '방문인구', '근무인구'])
-    parser.add_argument('--many_list', type=list, default=[True, True, False])
+    parser.add_argument('--conditional_list', type=str, default="유사업종수 방문인구 근무인구")
+    parser.add_argument('--many_list', type=str, default="True True False")
     args = parser.parse_args()
 
-    result = recommender_sys(args.business_type, args.conditional_list, args.many_list)
+    conditional_list = args.conditional_list.split(' ')
+    many_list = args.many_list.split(' ')
+    result = recommender_sys(args.business_type, conditional_list, many_list)
     print(result)
 
