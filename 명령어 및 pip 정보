@@ -1,0 +1,15 @@
+실행 명령어
+# many_list는 많은 경우를 check하였는지를 나타내는 list
+# conditional_list와 many_list 각각의 list에서 value는 띄어쓰기로 구분한다.
+# conditional_list와 many_list의 value의 수가 반드시 같아야 한며 index번호로 mapping이 될수 있어야 한다.
+
+python [pyfile 경로]/recommender.py --business_type=[비즈니스 타입명] --conditional_list=[추천 관여 칼럼] --many_list=[많은 경우 체크 여부]
+Ex) python recommender.py --business_type="음식점" --conditional_list="유사업종수 방문인구 근무인구" --many_list="True True False"
+
+< 현재지원 >
+business_type: 음식점
+conditional_list: 유사업종수, 이용자수, 방문인구, 근무인구, 거주인구
+
+< pip list >
+pip install pandas
+pip install numpy
