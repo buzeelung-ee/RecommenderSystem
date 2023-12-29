@@ -7,12 +7,6 @@ from numpy.linalg import norm
 from Recommendation.data_preprocessing import load_data, convert_business_type, get_group, get_threshold
 
 
-def arg_as_list(s):
-    v = ast.literal_eval(s)
-    if type(v) is not list:
-        raise argparse.ArgumentTypeError("Argument \"%s\" is not a list" % (s))
-    return v
-
 def cos_sim(A, B):
   return dot(A, B)/(norm(A)*norm(B))
 
