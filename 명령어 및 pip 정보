@@ -1,4 +1,4 @@
-실행 명령어
+< 실행 명령어 >
 # many_list는 많은 경우를 check하였는지를 나타내는 list
 # conditional_list와 many_list 각각의 list에서 value는 띄어쓰기로 구분한다.
 # conditional_list와 many_list의 value의 수가 반드시 같아야 한며 index번호로 mapping이 될수 있어야 한다.
