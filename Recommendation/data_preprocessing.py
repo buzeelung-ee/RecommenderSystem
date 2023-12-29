@@ -6,10 +6,10 @@ import re
 
 def load_data():
     # 17년도 ~ 20년도 데이터
-    temp1 = pd.read_csv('C:/Users/rlawj/sample_DB/Jeju/Recommendation_data/market_17.csv', encoding='cp949')
-    temp2 = pd.read_csv('C:/Users/rlawj/sample_DB/Jeju/Recommendation_data/market_18.csv', encoding='cp949')
-    temp3 = pd.read_csv('C:/Users/rlawj/sample_DB/Jeju/Recommendation_data/market_19.csv', encoding='cp949')
-    temp4 = pd.read_csv('C:/Users/rlawj/sample_DB/Jeju/Recommendation_data/market_20.csv', encoding='cp949')
+    temp1 = pd.read_csv('./data/market_17.csv', encoding='cp949')
+    temp2 = pd.read_csv('./data/market_18.csv', encoding='cp949')
+    temp3 = pd.read_csv('./data/market_19.csv', encoding='cp949')
+    temp4 = pd.read_csv('./data/market_20.csv', encoding='cp949')
 
     result = pd.concat([temp1, temp2, temp3, temp4]).reset_index(drop=True)
 
