@@ -1,7 +1,10 @@
 import numpy as np
 import pandas as pd
+import os
 pd.set_option('mode.chained_assignment', None)
 import re
+
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
 
 def load_data():
@@ -53,7 +56,7 @@ def get_threshold(df: pd.DataFrame, columns, many):
     thresholds = []
 
     for idx, column in enumerate(columns):
-        if many[idx] == 'True':
+        if many[idx] == 'true':
             m = True
         else:
             m = False
