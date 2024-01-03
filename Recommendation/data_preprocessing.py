@@ -53,9 +53,16 @@ def get_threshold(df: pd.DataFrame, columns, many):
     thresholds = []
 
     for idx, column in enumerate(columns):
-        if many[idx]:
+        if many[idx] == 'True':
+            m = True
+        else:
+            m = False
+
+        if m:
+            print(f'{column} {m} q75: {df[column].quantile(q=0.75)}')
             thresholds.append(df[column].quantile(q=0.75))
         else:
+            print(f'{column} {m} q25: {df[column].quantile(q=0.25)}')
             thresholds.append(df[column].quantile(q=0.25))
 
     return thresholds
