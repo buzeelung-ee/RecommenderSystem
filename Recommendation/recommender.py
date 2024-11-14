@@ -7,24 +7,41 @@ from Recommendation.data_preprocessing import load_data, convert_business_type, 
 import json
 
 
-def cos_sim(A, B):
-  return dot(A, B)/(norm(A)*norm(B))
+# def cos_sim(A, B):
+#   return dot(A, B)/(norm(A)*norm(B))
 
 
-def cos_sim_based(df: pd.DataFrame, conditional_list: list, thresholds: list):
+# def cos_sim_based(df: pd.DataFrame, conditional_list: list, thresholds: list):
+#     feature_df = df[conditional_list]
+#     cos_sim_list = []
+#     for i in feature_df.to_numpy():
+#         cosine_sim = cos_sim(i, np.array(thresholds))
+#         cos_sim_list.append(cosine_sim)
+
+#     item = df['지역']
+#     df = pd.DataFrame(cos_sim_list, columns=['유사도'])
+
+#     df = pd.concat([item, df], axis=1)
+
+#     return df
+
+# 2024-11-14 문제점 발견 후 개선
+def euclidean_dist(A, B):
+    return np.sqrt(np.sum((A - B) ** 2))
+
+def euclidean_dist_based(df: pd.DataFrame, conditional_list: list, thresholds: list):
     feature_df = df[conditional_list]
-    cos_sim_list = []
+    euclidean_dist_list = []
     for i in feature_df.to_numpy():
-        cosine_sim = cos_sim(i, np.array(thresholds))
-        cos_sim_list.append(cosine_sim)
+        distance = euclidean_dist(i, np.array(thresholds))
+        euclidean_dist_list.append(distance)
 
     item = df['지역']
-    df = pd.DataFrame(cos_sim_list, columns=['유사도'])
+    df = pd.DataFrame(euclidean_dist_list, columns=['거리'])
 
     df = pd.concat([item, df], axis=1)
 
     return df
-
 
 def recommender_sys(business_type, conditional_list, many_list):
     df = load_data()
